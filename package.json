@@ -1,0 +1,20 @@
+{
+  "name": "pocketwise",
+  "type": "module",
+  "scripts": {
+    "start": "bun run main.ts",
+    "dev": "",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "1",
+    "typescript": "5"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
+    "@prisma/client": "^5.16.0",
+    "elysia": "1",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.16.0"
+  }
+}
