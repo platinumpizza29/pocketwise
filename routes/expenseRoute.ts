@@ -53,4 +53,35 @@ expenseRoute.post(
   }
 );
 
+//update the expense
+expenseRoute.put(
+  "/expense/:id",
+  async ({ params, body }: { params: { id: string }; body: Expense }) => {
+    const { id } = params;
+    const { description, amount } = body;
+    try {
+      const expense = await prisma.expense.update({
+        where: {
+          id: parseInt(id),
+        },
+        data: {
+          description,
+          amount,
+        },
+      });
+      return {
+        status: 200,
+        expense: expense,
+        message: "Expense updated",
+      };
+    } catch (error: Error | any) {
+      console.log(error.message);
+      return {
+        status: 500,
+        message: "Internal server error",
+      };
+    }
+  }
+);
+
 export default expenseRoute;
