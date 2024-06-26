@@ -7,15 +7,18 @@ const expenseRoute = new Elysia();
 
 //CRUD for expenses
 // get all expense per user
-expenseRoute.get("/:id", async ({ params }) => {
-  const { id } = params;
-  const expenses = await prisma.expense.findMany({
-    where: {
-      id: parseInt(id),
-    },
-  });
-  return expenses;
-});
+expenseRoute.get(
+  "/expense/:id",
+  async ({ params }: { params: { id: string } }) => {
+    const { id } = params;
+    const expenses = await prisma.expense.findMany({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    return expenses;
+  }
+);
 
 // create a expense for that user
 expenseRoute.post(
