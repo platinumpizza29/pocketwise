@@ -19,7 +19,7 @@ expenseRoute.get("/:id", async ({ params }) => {
 
 // create a expense for that user
 expenseRoute.post(
-  "/:id",
+  "/expense/:id",
   async ({ params, body }: { params: { id: string }; body: Expense }) => {
     const { id } = params;
     const { description, amount } = body;
@@ -37,9 +37,10 @@ expenseRoute.post(
       });
       return {
         status: 200,
+        expense: expense,
         message: "Expense created",
       };
-    } catch (error) {
+    } catch (error: Error | any) {
       console.log(error.message);
       return {
         status: 500,
@@ -48,3 +49,5 @@ expenseRoute.post(
     }
   }
 );
+
+export default expenseRoute;
