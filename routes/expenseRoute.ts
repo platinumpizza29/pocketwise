@@ -13,11 +13,11 @@ expenseRoute.get(
     const { id } = params;
     const expenses = await prisma.expense.findMany({
       where: {
-        id: parseInt(id),
+        userId: parseInt(id),
       },
     });
     return expenses;
-  }
+  },
 );
 
 // create a expense for that user
@@ -50,7 +50,7 @@ expenseRoute.post(
         message: "Internal server error",
       };
     }
-  }
+  },
 );
 
 //update the expense
@@ -81,7 +81,7 @@ expenseRoute.put(
         message: "Internal server error",
       };
     }
-  }
+  },
 );
 
 export default expenseRoute;
