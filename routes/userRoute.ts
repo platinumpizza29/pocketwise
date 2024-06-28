@@ -72,6 +72,7 @@ userRoute.post("/register", async ({ body }: { body: User }) => {
       token: token,
     };
   } catch (error) {
+    console.log(error);
     return {
       status: 500,
       message: "Internal server error",

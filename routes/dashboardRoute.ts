@@ -58,4 +58,29 @@ function getDaysInMonth(startDate: Date, endDate: Date): number {
   );
   return diffDays + 1; // Add 1 to include both start and end dates
 }
+
+// TODO: route for top expense source
+dashRoute.get(
+  "/dashboard/expense",
+  ({ params }: { params: { id: string } }) => {
+    try {
+      const expenseSource = prisma.expense.findMany({
+        take: 5,
+        where: {
+          userId: parseInt(params.id),
+        },
+      });
+      return expenseSource;
+    } catch (error) {
+      console.error(error);
+      return { error: "Internal server error" };
+    }
+  }
+);
+
+// TODO: route for pie chart
+// TODO: Recent expense Route
+
+// TODO: chart data for actual expense for projected expense
+
 export default dashRoute;
